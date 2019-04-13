@@ -42,7 +42,7 @@ class ArticleController extends Controller
 
         Article::create($validated);
 
-        return redirect()->action('article.index');
+        return redirect()->route('article.index');
     }
 
     /**
@@ -64,7 +64,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        return view('articles.edit')->with('article', $article);
+        return view('article.edit')->with('article', $article);
     }
 
     /**
@@ -83,7 +83,7 @@ class ArticleController extends Controller
 
         $article->update($validated);
 
-        return redirect()->action('article.index');
+        return redirect()->route('article.index');
     }
 
     /**
@@ -95,6 +95,6 @@ class ArticleController extends Controller
     public function destroy(Article $article)
     {
         $article->delete();
-        return redirect()->action('article.index');
+        return redirect()->route('article.index');
     }
 }
