@@ -14,7 +14,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        return view('article.index')->with('articles', Article::all());
     }
 
     /**
@@ -24,7 +24,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('article.create');
     }
 
     /**
@@ -35,7 +35,14 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
+        Article::create($validated);
+
+        return redirect()->action('article.index');
     }
 
     /**
@@ -46,7 +53,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        return view('article.show')->with('article', $article);
     }
 
     /**
@@ -57,7 +64,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        return view('articles.edit')->with('article', $article);
     }
 
     /**
@@ -69,7 +76,14 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
+        $article->update($validated);
+
+        return redirect()->action('article.index');
     }
 
     /**
@@ -80,6 +94,7 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article->delete();
+        return redirect()->action('article.index');
     }
 }
