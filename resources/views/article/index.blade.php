@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('partials.layout')
 
 @section('title')
     Домашняя страница
