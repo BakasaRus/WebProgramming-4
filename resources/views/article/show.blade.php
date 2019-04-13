@@ -8,7 +8,7 @@
     <section class="my-5">
         <div class="container">
             <h1>{{ $article->title }}</h1>
-            <p>{{ $article->body }}</p>
+            <p>{!! nl2br(e($article->body)) !!}</p>
             <div class="d-flex justify-content-between">
                 <div class="btn-group">
                     <a href="{{ route('article.edit', $article->id) }}" class="btn btn-sm btn-primary">Редактировать</a>
