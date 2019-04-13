@@ -7,6 +7,16 @@
 @section('content')
     <section class="mt-5">
         <h1>Создание новой статьи</h1>
+        @if($errors->any())
+            <div class="alert alert-danger" role="alert">
+                <strong>При создании статьи возникли следующие ошибки:</strong>
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $message)
+                        <li>{{ $message }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <form action="{{ route('article.store') }}" method="POST">
             @csrf
             <div class="form-group">
